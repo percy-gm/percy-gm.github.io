@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Letters</title>
+</head>
+
+<body>
+
+  <div>
+    <p id="directions-text">Guess the letter I'm thinking of!</p>
+    <p id="userchoice-text"></p>
+    <p id="computerchoice-text"></p>
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="guessesleft-text"></p>
+  </div>
+
+  <script type="text/javascript">
+    // Creates an array that lists out letters of the alphabet.
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+    // Creating variables to hold the number of wins, losses, and guesses left. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    var guesses = 0;
+    var guessesLeft = 9;
+
+    // Create variables that hold references to the places in the HTML where we want to display things.
+    var directionsText = document.getElementById("directions-text");
+    var userChoiceText = document.getElementById("userchoice-text");
+    var computerChoiceText = document.getElementById("computerchoice-text");
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var guessesLeftText = document.getElementById("guessesleft-text");
+    // ****************************************************************************************
+
+   
+    // and a variable which will hold the input from the prompts
+
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length-1)];
+    var userText = document.getElementById("user-text");
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+    // Determines which key was pressed.
+    var keyPressed = event.key;
+    // For Loop Elements Repeats 9 Times unless win 
+    if (guessesLeft > 0) { 
+        if (keyPressed === computerGuess){
+            wins++; 
+            guessesLeft=9; 
+            winsText.innerText = "wins: " + wins;
+        }
+        else {
+            guessesLeft-- ; 
+            userChoiceText.innerText = "You chose: " + keyPressed;
+            computerChoiceText.innerText = "The computer chose: " + computerGuess;
+            guessesLeftText.innerText = "guesses left: " + guessesLeft;
+        }
+        
+      }
+        else {losses++;
+        lossesText.innerText = "losses: " + losses;
+     } 
+     }
+
+ 
+   
+    
+    ;
+  </script>
+
+</body>
+
+</html>
